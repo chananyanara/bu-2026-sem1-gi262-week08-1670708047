@@ -15,9 +15,10 @@ namespace Assignment
 
         private int Factorial(int n)
         {
-            if (n <= 1) return 1;
-
-            return n * Factorial(n - 1);
+            // factorial(5) = 5 * 4 .. 1 => 5 * fact(4)
+            if (n == 0) return 1; // base case
+            if (n == 1) return 1; // base case
+            return n * Factorial(n - 1); // recursive case
         }
 
         public int LCT02_RecursiveFibonacci(int n)
@@ -27,9 +28,15 @@ namespace Assignment
 
         private int Fibonacci(int n)
         {
-            if (n <= 1) return n;
-
-            return Fibonacci(n - 1) + Fibonacci(n - 2);
+            // base case
+            if (n == 0) return 0; // base case
+            if (n == 1) return 1; // base case
+            // recursive case
+            // fib(5) = fib(4) + fib(3)
+            // fib(4) = fib(3) + fib(2)
+            // fib(2) = fib(1) + fib(0)
+            // fib(n) = fib(n-1) + fib(n-2)
+            return Fibonacci(n-1) + Fibonacci(n-2); // recursive case
         }
 
         public int LCT03_RecursiveSumOfOneToN(int n)
@@ -39,8 +46,12 @@ namespace Assignment
 
         private int SumOfOneToN(int n)
         {
-            if (n <= 0) return 0;
+            // base case
+            // if (n == 0) return 0;
+            // if (n == 1) return 1;
+            if (n <= 1) return n;
 
+            // recursive case
             return n + SumOfOneToN(n - 1);
         }
 
@@ -51,8 +62,14 @@ namespace Assignment
 
         private int SumOfNumbers(int[] numbers, int index)
         {
+            // numbers = [1, 2, 3, 4, 5]
+            // sum = numbers[0] + numbers[1] + ... + numbers[4]
+            // sum = numbers[n-1] + numbers[n-2] + ... + numbers[0]
+            // sum = numbers[n-1] + sum(n-2)
+            // base case
             if (index >= numbers.Length) return 0;
 
+            // recursive case
             return numbers[index] + SumOfNumbers(numbers, index + 1);
         }
 
@@ -68,7 +85,6 @@ namespace Assignment
         private int Power(int baseNum, int exponent)
         {
             if (exponent == 0) return 1;
-
             return baseNum * Power(baseNum, exponent - 1);
         }
 
@@ -80,9 +96,7 @@ namespace Assignment
         private bool IsPalindrome(string str, int start, int end)
         {
             if (start >= end) return true;
-
             if (str[start] != str[end]) return false;
-
             return IsPalindrome(str, start + 1, end - 1);
         }
 
@@ -94,7 +108,6 @@ namespace Assignment
         private int GCD(int a, int b)
         {
             if (b == 0) return a;
-
             return GCD(b, a % b);
         }
 
@@ -122,3 +135,4 @@ namespace Assignment
         #endregion
     }
 }
+
